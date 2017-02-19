@@ -1,0 +1,8 @@
+[package]
+name = "pi-workshop-rs"
+version = "0.1.0"
+authors = ["Jonathan Pallant <github@thejpster.org.uk>"]
+
+[dependencies]
+sensehat-rs = { git = "https://github.com/thejpster/sensehat-rs" }
+
