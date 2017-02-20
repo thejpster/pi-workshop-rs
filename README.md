@@ -6,10 +6,10 @@ This is the workshop starter project for the 'Rust on Raspberry Pi' workshop at 
 
 The code for this workshop lives on Github, in the repository [thejpster/pi-workshop-rs](https://github.com/thejpster/pi-workshop-rs). Open yourself a terminal window and execute these two commands.
 
-*Note:* If the workshop organisers have prepared your workstation for you, you should find the folder `pi-workshop-rs` exists, in which case you can skip the `git checkout` and just perform the `cd`.
+*Note:* If the workshop organisers have prepared your workstation for you, you should find the folder `pi-workshop-rs` exists, in which case you can skip the `git clone` and just perform the `cd`.
 
 ```
-~ $ git checkout https://github.com/thejpster/pi-workshop-rs
+~ $ git clone https://github.com/thejpster/pi-workshop-rs
 ~ $ cd pi-workshop-rs
 ```
 
@@ -179,6 +179,6 @@ Ooh, a unicode degree symbol. It's like we're in the future or something.
 
 # Step 7 - Go crazy
 
-Now it's time to explore the rest of the `SenseHat` API. Can you get the humidity? What does the default formatting for that look like? Can you print out the atomospheric pressure of the room in PSI?
+Now it's time to explore the rest of the `SenseHat` API. Can you get the humidity? What does the default formatting for that look like? Can you print out the atmospheric pressure of the room in PSI?
 
 Go have fun, with complete type safety behind you every step of the way.
