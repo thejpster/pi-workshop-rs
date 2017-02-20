@@ -1,6 +1,6 @@
 # pi-workshop-rs
 
-This is the workshop starter project for the 'Rust on Raspberry Pi' workshop at the Raspberry Pi 5th Birthday Party. Thanks to [Cambridge Consultants](www.cambridgeconsultants.com) for their support.
+This is the workshop starter project for the 'Rust on Raspberry Pi' workshop at the Raspberry Pi 5th Birthday Party. Thanks to [Cambridge Consultants](http://www.cambridgeconsultants.com) for their support.
 
 # Step 1 - Get the code
 
