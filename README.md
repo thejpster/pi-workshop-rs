@@ -179,8 +179,90 @@ Hello, world! It's 34.5 °C
 
 Ooh, a unicode degree symbol. It's like we're in the future or something.
 
-# Step 7 - Go crazy
+# Step 7 - Compare two temperatures
 
-Now it's time to explore the rest of the `SenseHat` API. Can you get the humidity? What does the default formatting for that look like? Can you print out the atmospheric pressure of the room in PSI?
+There are two temperature sensors on the Sense Hat. Let's get both of them, and see what the difference is. Experience shows they're usually within a degree of each other - but what about your board?
+
+We're adding in an extra function here, so don't just paste this inside `main()` like last time - this is the whole file.
+
+```rust
+extern crate sensehat;
+
+use sensehat::Temperature;
+
+fn compare_temps(first: &Temperature, second: &Temperature) {
+    let difference = if first > second {
+        first.as_celsius() - second.as_celsius()
+    } else {
+        second.as_celsius() - first.as_celsius()
+    };
+    println!("Temperature difference of: {:.1} degrees", difference);
+}
+
+fn main() {
+    let mut hat = sensehat::SenseHat::new().expect("couldn't find Sense Hat");
+    let temp1 = hat.get_temperature_from_humidity().expect("Reading humidity temp");
+    let temp2 = hat.get_temperature_from_pressure().expect("Reading pressure temp");
+    println!("Temp1: {}", temp1);
+    println!("Temp2: {}", temp2);
+    compare_temps(&temp1, &temp2);
+}
+```
+
+You'll see that declaring and calling functions is relatively straightforward. Here're we're passing the two `Temperature` objects in by immutable reference. We've also introduced an `if` expression, and taken advantage of the fact that in an expression based language, everything has a return type - even `if`!. 
+
+Finally, note that we need to manually convert our temperature objects to floating point values in Celsius by hand otherwise the subtraction gives us odd results (because Temperature is actually working in Kelvin internally). But we don't need to do the conversion to simply see which is larger. Because `difference` is a plain float, we format it with a single decimal place - just to make the output a little neater.
+
+Finally, it's worth noting that unlike C there are no function declarations required. We could have written `main()` above and put `compare_temps()` below and it would still work.
+
+# Step 8 - Looping and Vectors
+
+Let's grab some repeated pressure readings now, and store them in a vector. We'll need to create a vector, then use a for loop to repeatedly perform the reading and push the data into the vector.
+
+```rust
+extern crate sensehat;
+
+use sensehat::Temperature;
+use std::thread;
+use std::time;
+
+fn compare_temps(first: &Temperature, second: &Temperature) {
+    let difference = if first > second {
+        first.as_celsius() - second.as_celsius()
+    } else {
+        second.as_celsius() - first.as_celsius()
+    };
+    println!("Temperature difference of: {:.1} degrees", difference);
+}
+
+fn main() {
+    let mut hat = sensehat::SenseHat::new().expect("couldn't find Sense Hat");
+    let temp1 = hat.get_temperature_from_humidity().expect("Reading humidity temp");
+    let temp2 = hat.get_temperature_from_pressure().expect("Reading pressure temp");
+    println!("Temp1: {}", temp1);
+    println!("Temp2: {}", temp2);
+    compare_temps(&temp1, &temp2);
+
+    let mut pressures = Vec::new();
+    for i in 0..20 {
+        println!("Getting reading {}...", i);
+        let temp = hat.get_pressure().expect("Reading pressure");
+        pressures.push(temp);
+        thread::sleep(time::Duration::from_millis(250));
+    }
+
+    println!("Pressure readings: {:?}", pressures);
+}
+```
+
+Rather than the `sleep` function taking a floating point number of seconds (or is it milliseconds?) as you would in other languages, here it takes a `Duration` object. 
+
+Again, we haven't needed to specify the type of our new variable `pressures` as the compiler is able to work it out - if we store `Pressure` objects in it, it must be a `Vec<Pressure>`!
+
+The final `println!` uses the `:?` 'debug' format specifier. This is very useful for dumping the contents of complex objects, like our Vector, and can be implemented automatically by the compiler for any types you create if you ask it nicely.
+
+# Step 9 - Go explore...
+
+Now it's time to explore the rest of the `SenseHat` API. Can you get the humidity? What does the default formatting for that look like? Can you print out the average atmospheric pressure of the room over the course of 20 seconds, in PSI? What happens if you try and read the temperature in a loop?
 
 Go have fun, with complete type safety behind you every step of the way.
