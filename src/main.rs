@@ -1,4 +1,4 @@
-extern crate sensehat_rs;
+extern crate sensehat;
 
 fn main() {
     println!("Hello, world!");
