@@ -2,6 +2,8 @@
 
 This is the workshop starter project for the 'Rust on Raspberry Pi' workshop at the Raspberry Pi 5th Birthday Party. Thanks to [Cambridge Consultants](http://www.cambridgeconsultants.com) for their support.
 
+This material is Copyright Jonathan 'theJPster' Pallant, 2017. It is licensed as [CC-BY](https://creativecommons.org/licenses/by/2.0/uk/).
+
 # Step 1 - Get the code
 
 The code for this workshop lives on Github, in the repository [thejpster/pi-workshop-rs](https://github.com/thejpster/pi-workshop-rs). Open yourself a terminal window and execute these two commands.
