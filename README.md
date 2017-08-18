@@ -88,7 +88,7 @@ If you run this code, you'll see the compiler complain that you've made a variab
 
 # Step 5 - Try and read the temperature
 
-The `SenseHat` struct [has an API](http://example.com/URL_REQUIRED_HERE) (TODO ADD URL!) very similar to the [Python Sense Hat driver](https://pythonhosted.org/sense-hat/).
+The `SenseHat` struct [has an API](https://docs.rs/sensehat/0.2.1/sensehat/) very similar to the [Python Sense Hat driver](https://pythonhosted.org/sense-hat/).
 
 First up, we notice that the `new` function on the `SenseHat` struct returns a `SenseHatResult`. This is shorthand for `Result<SenseHat, SenseHatError>` and what this means is that the function could return one of two things. If it works OK, you get a `SenseHat`, which is an object we can use to do things. If it doesn't work OK (perhaps you don't have the I2C drivers loaded, or your on a PC not a Raspberry Pi), then you get a SenseHatError. Rust enforces you to check which you've got before allowed to call any methods on the returned object.
 
