@@ -88,7 +88,7 @@ If you run this code, you'll see the compiler complain that you've made a variab
 
 # Step 5 - Try and read the temperature
 
-The `SenseHat` struct [has an API](http://example.com/URL_REQUIRED_HERE) (TODO ADD URL!) very similar to the [Python Sense Hat driver](https://pythonhosted.org/sense-hat/).
+The `SenseHat` struct [has an API](https://docs.rs/sensehat/0.2.1/sensehat/) very similar to the [Python Sense Hat driver](https://pythonhosted.org/sense-hat/).
 
 First up, we notice that the `new` function on the `SenseHat` struct returns a `SenseHatResult`. This is shorthand for `Result<SenseHat, SenseHatError>` and what this means is that the function could return one of two things. If it works OK, you get a `SenseHat`, which is an object we can use to do things. If it doesn't work OK (perhaps you don't have the I2C drivers loaded, or your on a PC not a Raspberry Pi), then you get a SenseHatError. Rust enforces you to check which you've got before allowed to call any methods on the returned object.
 
@@ -157,7 +157,7 @@ Hello, world!
 
 In other languages, a function like `get_temperature_from_humidity()` might give you a number of some sort (maybe a floating point number). But, what would the units be? The comments might tell you, but what if you mis-read them? Issues with misunderstanding the units represented by plain numbers in computer programs [have serious consequences](http://edition.cnn.com/TECH/space/9909/30/mars.metric.02/).
 
-In Rust, we have a system for richly expressing exactly what our values *mean*, but without adding any run time overhead. In this case, the `get_temperature_from_humidity()` function returns a `sensehat::Temperature` object (which is actually re-exported from a fork of the excellent [measurements crate](https://docs.rs/measurements/0.2.1/measurements/struct.Temperature.html)). This `Temperature` object has methods like `as_celcius()` and `as_fahrenheit()` which return floating point numbers in the specified units. It also has a default formatting implementation, which picks a unit and puts in the return string. 
+In Rust, we have a system for richly expressing exactly what our values *mean*, but without adding any run time overhead. In this case, the `get_temperature_from_humidity()` function returns a `sensehat::Temperature` object (which is actually re-exported from a fork of the excellent [measurements crate](https://docs.rs/measurements/0.2.1/measurements/struct.Temperature.html)). This `Temperature` object has methods like `as_celsius()` and `as_fahrenheit()` which return floating point numbers in the specified units. It also has a default formatting implementation, which picks a unit and puts in the return string. 
 
 Let's use that, but first, we have another Result to unwrap (because reading the temperature can fail - say, if you'd unplugged the SenseHat, or the sensor chip was damaged).
 
