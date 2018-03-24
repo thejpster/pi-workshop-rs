@@ -1,9 +1,8 @@
 [package]
 name = "pi-workshop-rs"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Jonathan Pallant <github@thejpster.org.uk>"]
 
 [dependencies]
-sensehat = "^0.1.0"
-
+sensehat = "0.4"
 
